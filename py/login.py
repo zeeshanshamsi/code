@@ -1,5 +1,5 @@
 from os import system
- 
+counter = 0
     
 class User: 
 
@@ -17,7 +17,6 @@ sam = User('Sam', '1234')
 box.append(zeeshan)
 box.append(sam)
 
-
 import threading
 def lockoutTimer():
     timer = threading.Timer(3.0, Unlock)
@@ -25,6 +24,16 @@ def lockoutTimer():
 
 def Unlock():
     print('\nAccount is now unlocked')
+
+
+
+def GlobalLock(a):
+    a+=1
+    print(a)
+    return a
+
+
+
 
 import getpass
 inputCheck = 1
@@ -41,30 +50,34 @@ while inputCheck == 1:
     
 
     for x in box:
-#        print('{0} is the username, {1} is the password'.format(x.username, x.password))
+
         if x.username == userInput1:
 
             if x.password == p:
                 system('clear')
-                print('\nWelcome, {}'.format(x.username))
+                print('\nWelcome, {}\n'.format(x.username))
                 inputCheck = 0
+                break
 
             else: 
                 
                 x.lockCount+=1
                 system('clear')
+                
+                
+                print('\nPassword Incorrect for User: {0}. Attempts Remaining: {1}'.format(x.username, (3 - x.lockCount)))
+
                 if x.lockCount == 3:
                     print('\nLocked Out')
                     x.lockCount = 0
-                    inputCheck = 0
-                    lockoutTimer()
-                print('\nPassword Incorrect. Please Try Again. Attempts Remaining: {}'.format((3 - x.lockCount)))
+                    #lockoutTimer()
+    
 
+    counter+=1
+    if counter == 10:
+        print('\nExceeded Attempt Limit - Exiting Program\n')
+        break
 
-
-            
-
-#           print('Username Not Found: {}'.format(userInput1))
-
-#        print('Incorrect Password - this is attempt: ' + str(counter))
-#            print('\nIncorrect Password - Attempt Number: {}'.format(counter))
+    if userInput1 == 'exit':
+        break 
+    
