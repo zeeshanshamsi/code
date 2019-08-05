@@ -1,21 +1,25 @@
+"""
+Zeeshan Shamsi
+8/5/2019
+This application runs a calculator and hangman app through a login system based on user account type. 
+"""
+
 from login import loginRun
-inputCheck = 0
 
+# keeps program running until user chooses to exit
+while True:
 
-while inputCheck == 0:
-            print('\nWould you like to launch? 1 = yes, 2 = exit')
-            AppInput1 = input('\nAnswer: ')
+    AppInput1 = input('\nWould you like to launch? 1 = Yes, 2 = Exit: ')
 
-            if AppInput1 == '1': 
-                inputCheck = 1
-                loginRun()
-                
-                
-            
-            if AppInput1 == '2':
-                break
+    if AppInput1 == '1' or AppInput1 == '2':
 
-            else: 
-                print('Input Incorrect')
+        if AppInput1 == '1': 
+            loginRun()
+        
+        else: 
+            print('\nExiting Program\n')
+            break
+    else:
+        print('\nInput Incorrect\n')
 
 
