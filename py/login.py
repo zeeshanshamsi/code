@@ -1,12 +1,15 @@
 def loginRun():
+
+
     from Calc import calcRun
-
     from Hangman import HangRun
-
     from os import system
-    counter = 0
-        
+    import threading
 
+    # Global lock counter
+    counter = 0
+
+    # creating objects using class called user
     class User: 
 
         def __init__(self, username, password, accountType): 
@@ -15,38 +18,35 @@ def loginRun():
             self.lockCount = 0
             self.accountType = accountType 
 
-        
+    # defining an array which we will use to store our user objects  
     box = []
 
+    # created user objects
     zeeshan = User('Zeeshan', '1234', 'admin')
     sam = User('Sam', '1234', 'standard')
     bob = User('Bob', '1234', 'standard')
     drake = User('Drake', '1234', 'standard')
 
-
-
+    # placing user objects in box array 
     box.append(zeeshan)
     box.append(sam)
     box.append(bob)
     box.append(drake)
 
-    import threading
-    
     # creating and starting a timer
-    def lockoutTimer():
+    """def lockoutTimer():
         timer = threading.Timer(3.0, Unlock)
-        timer.start() 
+        timer.start() """
 
     #prints "account is unlocked"
-    def Unlock():
-        print('\nAccount is now unlocked')
-
+    """def Unlock():
+        print('\nAccount is now unlocked')"""
 
     # incrementing counter by 1. Accepted argument (a) from call which represented current value of counter.
-    def GlobalLock(a):
+    """def GlobalLock(a):
         a+=1
         print(a)
-        return a
+        return a"""
 
     #determined account type based on current object's account type value. 
     def UserAccountTypeCheck():
@@ -64,12 +64,10 @@ def loginRun():
             print('\nChoose App: 1 = Calculator and 2 = Hangman\n ')
             AppInput1 = input('\nChoice #: ')
 
-
             # if true, run the calculator app
             if AppInput1 == '1': 
                 inputCheck = 1
                 calcRun()
-
 
             # if true, run the hangman game
             elif AppInput1 == '2':
@@ -96,14 +94,9 @@ def loginRun():
         except Exception as error: 
             print('ERROR', error)   
         
-
-
-
-
         # comparing objects stored in box (x) to the user input
         for x in box:
             if x.username == userInput1:
-                
                 
                 # true side clears screen and prints welcome. Then calls UserAccountTypeCheck to check user accnt type.
                 if x.password == p:
@@ -111,7 +104,6 @@ def loginRun():
                     print('\nWelcome, {}\n'.format(x.username))
                     #inputCheck = 0
                     UserAccountTypeCheck()
-
                     break
 
                 # if password is incorrect, increments lockcount on object then clears screen and prints remaining tries
@@ -134,4 +126,3 @@ def loginRun():
         # Allows user to exit login program by typing 'exit'
         if userInput1 == 'exit':
             break 
-        

@@ -1,6 +1,7 @@
 def HangRun():
   import random
-
+  from os import system
+  print('\nWelcome to Hangman! Choose a letter.\n')
   while True:
 
     def get_guess():
@@ -15,11 +16,8 @@ def HangRun():
       # 2. The dash string does NOT equal the secret word
       while guesses_left > -1 and not dashes == secret_word:
         
-        from os import system
         
-
-
-
+        
         # Print the amount of dashes and guesses left
         print(dashes)
         print (str(guesses_left))
@@ -64,7 +62,8 @@ def HangRun():
           result = result + rec_guess     # Adds guess to string if guess is correctly
           
         else:
-          # Add the dash at index i to result if it doesn't match the guess
+          # Add the dash at index i to result if it 
+          # doesn't match the guess
           result = result + cur_dash[i]
           
       return result
@@ -72,15 +71,21 @@ def HangRun():
     words = ["bbq", "south", "texas"]
 
     secret_word = random.choice(words)
+
+
+
+
     get_guess()
   
-  
+    # Comparing the launchInput variable to determine if 
+    # the calculator will run again. 
     launchInput = input('Continue = 1 Exit = 2: ')
 
     if launchInput == '1' or launchInput == '2':
 
       if launchInput == '1':
-          print('Hello')
+          system('clear')
+          print('\nYou suck, try again\n')
       else:
           print('\nExiting Program')
           break
